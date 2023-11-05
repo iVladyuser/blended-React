@@ -7,19 +7,32 @@ export class Gallery extends Component {
   state = {
     searchValue: '',
     photos: [],
+    page: 1,
+    showLoadMore: false,
   };
   onSubmit = searchValue => {
     if (!searchValue) return;
-    this.setState({ searchValue });
+    this.setState({ searchValue, page: 1, photos: [] });
   };
   async componentDidUpdate(prevProps, prevState) {
-    if (prevState.searchValue !== this.state.searchValue) {
+    if (
+      prevState.searchValue !== this.state.searchValue ||
+      prevState.page !== this.state.page
+    ) {
       const {
         data: { photos, total_results },
-      } = await ImageService.getImages(this.state.searchValue);
-      this.setState({ photos });
+      } = await ImageService.getImages(this.state.searchValue, this.state.page);
+      this.setState(prev => ({
+        photos: [...prev.photos, ...photos],
+        showLoadMore: this.state.page < Math.ceil(total_results / 15),
+      }));
     }
   }
+  handleLoadMoreClick = () => {
+    this.setState(prevState => ({
+      page: prevState.page + 1,
+    }));
+  };
   render() {
     return (
       <>
@@ -36,8 +49,12 @@ export class Gallery extends Component {
               );
             })}
         </Grid>
-        <Button>Load More</Button>
-        <Text textAlign="center">Sorry. There are no images ... 😭</Text>
+        {this.state.showLoadMore && (
+          <Button onClick={this.handleLoadMoreClick}>Load More</Button>
+        )}
+        {!this.state.showLoadMore && (
+          <Text textAlign="center">Sorry. There are no images ... 😭</Text>
+        )}
       </>
     );
   }
