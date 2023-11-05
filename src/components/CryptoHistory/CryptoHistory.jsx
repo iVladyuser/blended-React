@@ -1,10 +1,9 @@
 import { BaseTable, THead, Th, Tr, Td } from './CryptoHistory.styled';
-
 import { format } from 'date-fns';
 
 export const CryptoHistory = ({ items }) => {
   return (
-    <>
+    <div>
       <BaseTable>
         <THead>
           <tr>
@@ -26,6 +25,6 @@ export const CryptoHistory = ({ items }) => {
           ))}
         </tbody>
       </BaseTable>
-    </>
+    </div>
   );
 };
