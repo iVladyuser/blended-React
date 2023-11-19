@@ -6,7 +6,7 @@ export const CocktailsList = ({ cocktails }) => {
     <ul className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 items-center gap-8">
       {cocktails &&
         cocktails.map(({ drinks: [cocktail] }) => {
-          console.log(cocktail);
+          // console.log(cocktail);
           return <CocktailCard key={cocktail.idDrink} {...cocktail} />;
         })}
     </ul>

@@ -10,7 +10,7 @@ export const Home = () => {
     const fetchCocktails = async () => {
       try {
         const result = await getTrendingCocktails();
-        console.log(result);
+        // console.log(result);
         setCocktails(result);
       } catch (error) {
         console.log(error.message);
