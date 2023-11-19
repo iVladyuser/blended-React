@@ -2,17 +2,22 @@ import { CocktailsList } from '../components/CocktailsList';
 import { Section } from '../components/Section';
 import { Loader } from '../components/Loader';
 import { useEffect, useState } from 'react';
-import {getTrendingCocktails} from '../api/cocktail-service'
+import { getTrendingCocktails } from '../api/cocktail-service';
 
 export const Home = () => {
-  const [coctails, setCocktails] = useState([]);
+  const [cocktails, setCocktails] = useState([]);
   useEffect(() => {
-    try {
-      const result = getTrendingCocktails();
-    } catch (error) {
-      
-    }
-  });
+    const fetchCocktails = async () => {
+      try {
+        const result = await getTrendingCocktails();
+        console.log(result);
+        setCocktails(result);
+      } catch (error) {
+        console.log(error.message);
+      }
+    };
+    fetchCocktails();
+  }, []);
   return (
     <>
       <Section>
