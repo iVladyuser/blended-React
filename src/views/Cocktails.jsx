@@ -26,15 +26,8 @@ export const Cocktails = () => {
       }
     };
     fetchCocktailsByName();
-    //     setLoading(true);
-    //     searchByName(searchQuery)
-    //       .then(data => {
-    //         console.log('data', data);
-    //         setCocktails(data.results);
-    //       })
-    //       .catch(error)
-    //       .finally(() => setLoading(false));
-  }, [cocktails, searchQuery]);
+    setLoading(false);
+  }, [searchQuery]);
 
   const onSubmitSearchForm = event => {
     event.preventDefault();
@@ -63,7 +56,7 @@ export const Cocktails = () => {
           value={searchQuery}
         />
         {loading && <Loader />}
-        <CocktailsList cocktails={cocktails} />
+        {cocktails && <CocktailsList cocktails={cocktails} />}
         <SearchForm />
       </Section>
     </>
