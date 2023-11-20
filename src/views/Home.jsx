@@ -9,7 +9,8 @@ export const Home = () => {
   useEffect(() => {
     const fetchCocktails = async () => {
       try {
-        const { drinks } = await getTrendingCocktails();
+        const result = await getTrendingCocktails();
+        const drinks = result.map(({ drinks: [coctail] }) => coctail);
         // console.log(result);
         setCocktails(drinks);
       } catch (error) {
