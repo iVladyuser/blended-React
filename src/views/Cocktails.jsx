@@ -18,9 +18,9 @@ export const Cocktails = () => {
     }
     const fetchCocktailsByName = async () => {
       try {
-        const result = await searchByName(searchQuery);
-        console.log(result);
-        setCocktails(result);
+        const { drinks } = await searchByName(searchQuery);
+        console.log(drinks);
+        setCocktails(drinks);
       } catch (error) {
         console.log(error.message);
       }
@@ -56,7 +56,7 @@ export const Cocktails = () => {
           value={searchQuery}
         />
         {loading && <Loader />}
-        {cocktails && <CocktailsList cocktails={cocktails} />}
+        {cocktails?.length > 0 && <CocktailsList cocktails={cocktails} />}
         <SearchForm />
       </Section>
     </>
