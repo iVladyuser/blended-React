@@ -19,7 +19,7 @@ export const Cocktails = () => {
     const fetchCocktailsByName = async () => {
       try {
         const { drinks } = await searchByName(searchQuery);
-        console.log(drinks);
+        // console.log(drinks);
         setCocktails(drinks);
       } catch (error) {
         console.log(error.message);

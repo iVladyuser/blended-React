@@ -9,9 +9,9 @@ export const Home = () => {
   useEffect(() => {
     const fetchCocktails = async () => {
       try {
-        const result = await getTrendingCocktails();
+        const { drinks } = await getTrendingCocktails();
         // console.log(result);
-        setCocktails(result);
+        setCocktails(drinks);
       } catch (error) {
         console.log(error.message);
       }
@@ -25,7 +25,7 @@ export const Home = () => {
           Trending cocktails
         </h1>
 
-        <CocktailsList cocktails={cocktails} />
+        {cocktails?.length > 0 && <CocktailsList cocktails={cocktails} />}
       </Section>
     </>
   );
