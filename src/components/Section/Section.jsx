@@ -1,8 +1,10 @@
+import React from 'react';
 import PropTypes from 'prop-types';
+import styles from './Section.module.css';
 
 export const Section = ({ children }) => {
   return (
-    <section className='pt-14 pb-20'>
+    <section className={styles.section}>
       <div className='container'>{children}</div>
     </section>
   );

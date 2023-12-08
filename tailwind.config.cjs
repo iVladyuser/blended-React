@@ -1,8 +1,6 @@
 /** @type {import('tailwindcss').Config} */
-
 module.exports = {
   content: ['./index.html', './src/**/*.{js,ts,jsx,tsx}'],
-
   theme: {
     extend: {
       container: {
@@ -11,12 +9,7 @@ module.exports = {
           DEFAULT: '1.5rem',
         },
       },
-
-      fontFamily: {
-        sans: ['Raleway'],
-      },
     },
   },
-
-  plugins: [],
+  plugins: [require('@tailwindcss/forms')],
 };
